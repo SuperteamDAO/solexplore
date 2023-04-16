@@ -1,0 +1,22 @@
+[versions]
+
+kotlin = "1.6.10"
+coroutines = "1.6.0"
+
+[libraries]
+
+gradle-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "kotlin"}
+
+android-junit = "junit:junit:4.13.2"
+
+android-tools = "com.android.tools.build:gradle:7.2.1"
+
+appcompat = "androidx.appcompat:appcompat:1.4.1"
+
+androidx-fragment-ktx = "androidx.fragment:fragment-ktx:1.5.0"
+
+google-material = "com.google.android.material:material:1.6.1"
+
+ksol-core = "io.github.dlgrech:ksol-core:1.0.0"
+ksol-rpc = "io.github.dlgrech:ksol-rpc:1.0.0"

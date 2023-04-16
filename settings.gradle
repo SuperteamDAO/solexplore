@@ -1,0 +1,6 @@
+rootProject.name = "solexplore"
+
+include ":library"
+
+enableFeaturePreview("VERSION_CATALOGS")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

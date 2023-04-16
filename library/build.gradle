@@ -1,0 +1,97 @@
+plugins {
+    id "com.android.library"
+    id "org.jetbrains.kotlin.android"
+    id "org.jetbrains.dokka"
+    id "maven-publish"
+}
+
+android {
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 28
+        targetSdk 33
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        freeCompilerArgs += [
+                "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"
+        ]
+    }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
+}
+
+dependencies {
+    implementation libs.ksol.core
+    implementation libs.ksol.rpc
+
+    implementation libs.appcompat
+    implementation libs.androidx.fragment.ktx
+    implementation libs.google.material
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.release
+                artifactId = "solexplore"
+                group = 'io.github.dlgrech'
+                version = '1.0.0'
+
+                pom {
+                    name = "solexplore"
+                    description = "A library for Android apps to easily show Solana transaction details"
+
+                    url = 'https://github.com/dlgrech/solexplore'
+
+                    licenses {
+                        license {
+                            name = 'Apache License 2.0'
+                            url = 'https://github.com/dlgrech/solexplore/blob/main/LICENSE'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = 'dlgrech'
+                            name = 'Daniel Grech'
+                            email = 'dlgrech91@gmail.com'
+                        }
+                    }
+
+                    scm {
+                        connection = 'scm:git:git://github.com/dlgrech/solexplore.git'
+                        developerConnection = 'scm:git:ssh://github.com/dlgrech/solexplore.git'
+                        url = 'https://github.com/dlgrech/solexplore'
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                credentials {
+                    username = "$NEXUS_USERNAME"
+                    password = "$NEXUS_PASSWORD"
+                }
+
+                name = "MavenCentral"
+                url = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+            }
+        }
+    }
+}

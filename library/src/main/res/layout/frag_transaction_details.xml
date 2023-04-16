@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        style="@style/TransactionDetailsToolbar"
+        app:navigationIcon="@drawable/ic_baseline_close_24"
+        app:title="@string/transaction_details_screen_title" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:id="@+id/content_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_default">
+
+                <TextView
+                    android:id="@+id/transaction_signatures_header"
+                    style="@style/TransactionDetails.SmallHeader" />
+
+                <LinearLayout
+                    android:id="@+id/transaction_signatures_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/block_time_header"
+                    style="@style/TransactionDetails.SmallHeader"
+                    android:text="@string/transaction_details_section_block_time" />
+
+                <TextView
+                    android:id="@+id/block_time"
+                    style="@style/TransactionDetails.Value" />
+
+                <TextView
+                    android:id="@+id/fee_header"
+                    style="@style/TransactionDetails.SmallHeader"
+                    android:text="@string/transaction_details_section_fee" />
+
+                <TextView
+                    android:id="@+id/fee"
+                    style="@style/TransactionDetails.Value" />
+
+                <TextView
+                    android:id="@+id/memo_header"
+                    style="@style/TransactionDetails.SmallHeader"
+                    android:text="@string/transaction_details_section_memo" />
+
+                <TextView
+                    android:id="@+id/memo"
+                    style="@style/TransactionDetails.Value" />
+
+                <TextView
+                    style="@style/TransactionDetails.SmallHeader"
+                    android:text="@string/transaction_details_section_recent_blockhash" />
+
+                <TextView
+                    android:id="@+id/recent_blockhash"
+                    style="@style/TransactionDetails.Value" />
+
+                <TextView
+                    style="@style/TransactionDetails.SmallHeader"
+                    android:text="@string/transaction_details_section_slot" />
+
+                <TextView
+                    android:id="@+id/slot"
+                    style="@style/TransactionDetails.Value" />
+
+                <TextView
+                    android:id="@+id/accounts_header"
+                    style="@style/TransactionDetails.LargeHeader"
+                    android:text="@string/transaction_details_accounts" />
+
+                <LinearLayout
+                    android:id="@+id/accounts_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="?android:listDivider"
+                    android:orientation="vertical"
+                    android:showDividers="middle" />
+
+                <TextView
+                    android:id="@+id/logs_header"
+                    style="@style/TransactionDetails.LargeHeader"
+                    android:text="@string/transaction_details_logs" />
+
+                <LinearLayout
+                    android:id="@+id/logs_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/loading_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="@dimen/padding_xxxlarge"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+</LinearLayout>
